@@ -3,7 +3,7 @@ import axios from 'axios';
 import TaskItem from '../components/TaskItem';
 import { Link } from 'react-router-dom';
 
-const API_URL = 'http://localhost:8000';
+const API_URL = 'https://backend-empty-fire-4935.fly.dev';
 
 const TaskList = () => {
   const [tasks, setTasks] = useState([]);

@@ -178,7 +178,7 @@ const LoadTripPlanner = () => {
     const loadUserProfile = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get('http://localhost:8000/user/profile', {
+        const response = await axios.get('https://backend-empty-fire-4935.fly.dev/user/profile', {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         setUserProfile(response.data);
@@ -238,7 +238,7 @@ const LoadTripPlanner = () => {
       console.log("[TRIP_PLANNER] Sending request:", requestData);
       
       const token = localStorage.getItem('token');
-      const response = await axios.post('http://localhost:8000/trip/plan', requestData, {
+      const response = await axios.post('https://backend-empty-fire-4935.fly.dev/trip/plan', requestData, {
         headers: {
           'Authorization': `Bearer ${token}`
         }

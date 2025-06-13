@@ -27,7 +27,7 @@ const AIAssistant = () => {
     setIsProcessing(true);
 
     try {
-      const response = await fetch('http://localhost:8000/chat/message', {
+      const response = await fetch('https://backend-empty-fire-4935.fly.dev/chat/message', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

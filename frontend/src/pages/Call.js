@@ -16,7 +16,7 @@ const Call = () => {
 
     const handleTestCall = async () => {
         try {
-            const response = await fetch('http://localhost:8000/calls/initiate', {
+            const response = await fetch('https://backend-empty-fire-4935.fly.dev/calls/initiate', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -38,7 +38,7 @@ const Call = () => {
         if (input.trim()) {
             setIsProcessing(true);
             try {
-                const response = await fetch('http://localhost:8000/calls/answer', {
+                const response = await fetch('https://backend-empty-fire-4935.fly.dev/calls/answer', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

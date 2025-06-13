@@ -23,7 +23,7 @@ export default function Profile() {
   const loadProfileData = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:8000/user/profile', {
+      const response = await axios.get('https://backend-empty-fire-4935.fly.dev/user/profile', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       setProfile(response.data);
@@ -45,7 +45,7 @@ export default function Profile() {
     setIsLoading(true);
     try {
       const token = localStorage.getItem('token');
-      await axios.post('http://localhost:8000/user/profile', profile, {
+      await axios.post('https://backend-empty-fire-4935.fly.dev/user/profile', profile, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       setSuccessMessage('Profile saved successfully');

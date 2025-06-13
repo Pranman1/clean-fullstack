@@ -55,7 +55,7 @@ export default function Pricing() {
 
       console.log('User:', user);
 
-      const response = await axios.post('http://localhost:8000/stripe/create-checkout-session', {
+      const response = await axios.post('https://backend-empty-fire-4935.fly.dev/stripe/create-checkout-session', {
         priceId,
         customerEmail: user.email
       });

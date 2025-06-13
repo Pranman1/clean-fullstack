@@ -33,7 +33,7 @@ const AuthCallback = () => {
         console.log('Processing Google callback...');
         
         // Exchange the code for tokens
-        const response = await axios.get(`http://localhost:8000/auth/google/callback?code=${code}&state=${state}`);
+        const response = await axios.get(`https://backend-empty-fire-4935.fly.dev/auth/google/callback?code=${code}&state=${state}`);
         const data = response.data;
 
         console.log('Successfully received tokens');

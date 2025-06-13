@@ -29,7 +29,7 @@ const US_STATES = [
   "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"
 ];
 
-const API_URL = 'http://localhost:8000';
+const API_URL = 'https://backend-empty-fire-4935.fly.dev';
 
 const LoadSearch = () => {
   const navigate = useNavigate();
@@ -55,7 +55,7 @@ const LoadSearch = () => {
   const loadUserProfile = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:8000/user/profile', {
+      const response = await axios.get('https://backend-empty-fire-4935.fly.dev/user/profile', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       setUserProfile(response.data);

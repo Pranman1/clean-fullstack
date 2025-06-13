@@ -5,7 +5,7 @@ import axios from 'axios';
 import { useAuth } from '../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
-const API_URL = 'http://localhost:8000';
+const API_URL = 'https://backend-empty-fire-4935.fly.dev';
 
 const BookedLoads = () => {
     const [bookedLoads, setBookedLoads] = useState([]);

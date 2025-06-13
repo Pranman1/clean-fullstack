@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import truckstopLogo from '../assets/truckstop-logo.png';
 
-const API_URL = 'http://localhost:8000';
+const API_URL = 'https://backend-empty-fire-4935.fly.dev';
 
 // Helper function to format currency
 const formatCurrency = (amount) => {

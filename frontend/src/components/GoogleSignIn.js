@@ -4,7 +4,7 @@ import './GoogleSignIn.css';
 const GoogleSignIn = () => {
   const handleGoogleLogin = async () => {
     try {
-      const response = await fetch(`${API_URL}/auth/google/login`, {
+      const response = await fetch('https://backend-empty-fire-4935.fly.dev/auth/google/login', {
         method: 'GET',
         headers: {
           'Accept': 'application/json',

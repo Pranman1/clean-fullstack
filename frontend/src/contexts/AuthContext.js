@@ -28,7 +28,7 @@ export const AuthProvider = ({ children }) => {
 
       // Always verify with backend
       try {
-        const response = await axios.get(`${API_URL}/auth/me`, {
+        const response = await axios.get('https://backend-empty-fire-4935.fly.dev/auth/me', {
           headers: {
             'Authorization': `Bearer ${accessToken}`
           }
@@ -64,7 +64,7 @@ export const AuthProvider = ({ children }) => {
 
   const logout = async () => {
     try {
-      await axios.post(`${API_URL}/auth/logout`);
+      await axios.post('https://backend-empty-fire-4935.fly.dev/auth/logout');
     } catch (error) {
       console.error('Logout error:', error);
     } finally {

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-const API_URL = 'http://localhost:8000';
+const API_URL = 'https://backend-empty-fire-4935.fly.dev';
 
 const ProfileSettings = () => {
   const navigate = useNavigate();

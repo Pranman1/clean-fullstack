@@ -25,7 +25,7 @@ const AIVoiceAgent = () => {
     const loadPreferences = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get('http://localhost:8000/voice-preferences', {
+        const response = await axios.get('https://backend-empty-fire-4935.fly.dev/voice-preferences', {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         
@@ -74,7 +74,7 @@ const AIVoiceAgent = () => {
     try {
       const token = localStorage.getItem('token');
       
-      await axios.post('http://localhost:8000/voice-preferences', preferences, {
+      await axios.post('https://backend-empty-fire-4935.fly.dev/voice-preferences', preferences, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       
