@@ -1,0 +1,159 @@
+:root {
+  --primary: #1d3557;
+  --secondary: #e63946;
+  --accent: #f1c232;
+  --light: #f1faee;
+  --dark: #2b2d42;
+  --gray: #8d99ae;
+  --chrome: #d9d9d9;
+  --success: #2a9d8f;
+  --warning: #e9c46a;
+  --danger: #e76f51;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--light);
+  color: var(--dark);
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--secondary);
+}
+
+button {
+  cursor: pointer;
+  padding: 8px 16px;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+  background-color: var(--secondary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+button.secondary {
+  background-color: var(--gray);
+}
+
+button.secondary:hover {
+  background-color: var(--dark);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Truck-themed elements */
+.truck-divider {
+  height: 4px;
+  background: linear-gradient(to right, var(--primary), var(--chrome), var(--primary));
+  margin: 2rem 0;
+  border-radius: 2px;
+  position: relative;
+}
+
+.truck-divider::before {
+  content: "\f0d1"; /* Truck icon from Font Awesome */
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--light);
+  color: var(--primary);
+  padding: 0 10px;
+  font-size: 1.2rem;
+}
+
+/* Form styling */
+input, textarea, select {
+  padding: 10px 12px;
+  border: 2px solid var(--chrome);
+  border-radius: 4px;
+  font-family: 'Roboto', sans-serif;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: var(--primary);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(29, 53, 87, 0.2);
+}
+
+label {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  display: inline-block;
+  color: var(--dark);
+}
+
+/* Navigation styling */
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+  padding: 0;
+}
+
+nav a {
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  padding: 5px 10px;
+  position: relative;
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--secondary);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+nav a:hover::after {
+  transform: scaleX(1);
+} 

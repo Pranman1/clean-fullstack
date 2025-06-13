@@ -1,0 +1,147 @@
+/* Cinesis Theming */
+:root {
+  --primary: #4285f4;
+  --secondary: #34a853;
+  --accent-blue: #4285f4;
+  --accent-green: #34a853;
+  --accent-purple: #a259ff;
+  --background: #101820;
+  --surface: #181f2a;
+  --text: #fff;
+  --text-inverse: #000;
+  --muted: #b0b8c1;
+  --danger: #ea4335;
+  --success: #34a853;
+  --chrome: #232b38;
+  --shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+  --radius: 12px;
+  --font: 'Inter', 'Segoe UI', Arial, sans-serif;
+  --card-background: #fff;
+  --card-text: #000;
+}
+
+.theme-dark {
+  --background: #101820;
+  --surface: #181f2a;
+  --text: #fff;
+  --text-inverse: #000;
+  --muted: #b0b8c1;
+  --chrome: #232b38;
+  --card-background: #232b38;
+  --card-text: #fff;
+  --primary: #4285f4;
+  --accent-blue: #4285f4;
+  --accent-purple: #a259ff;
+}
+
+.theme-light {
+  --background: #f7fafd;
+  --surface: #fff;
+  --text: #101820;
+  --text-inverse: #fff;
+  --muted: #4a4a4a;
+  --chrome: #e0e6ed;
+  --card-background: #fff;
+  --card-text: #101820;
+  --primary: #4285f4;
+  --accent-blue: #4285f4;
+  --accent-purple: #a259ff;
+}
+
+body,
+#root {
+  background: var(--background);
+  color: var(--text);
+  font-family: var(--font);
+  margin: 0;
+  min-height: 100vh;
+  transition: background 0.3s, color 0.3s;
+}
+
+button {
+  background: var(--primary);
+  color: var(--text-inverse);
+  border: none;
+  border-radius: var(--radius);
+  padding: 10px 22px;
+  font-weight: 600;
+  font-size: 1rem;
+  box-shadow: var(--shadow);
+  transition: background 0.2s, transform 0.2s;
+}
+
+button:hover {
+  background: var(--accent-blue);
+  transform: translateY(-1px);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+.card,
+.saved-loads-grid>div,
+.load-result-card {
+  background: var(--card-background);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  color: var(--card-text);
+  border: 1px solid var(--chrome);
+}
+
+/* Direct Freight badge */
+.direct-freight-badge {
+  background-color: var(--accent-blue) !important;
+  color: white !important;
+}
+
+/* Truckstop badge */
+.truckstop-badge {
+  background-color: var(--accent-green) !important;
+  color: white !important;
+}
+
+/* Navigation active state */
+.nav-link-active {
+  background: rgba(66, 133, 244, 0.15);
+  color: var(--primary) !important;
+}
+
+.nav-link-active:hover {
+  background: rgba(66, 133, 244, 0.25);
+}
+
+/* Form styling */
+input,
+select,
+textarea {
+  border: 2px solid var(--chrome);
+  border-radius: var(--radius);
+  padding: 8px 12px;
+  background: var(--surface);
+  color: var(--text);
+  transition: border-color 0.2s;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--primary);
+  outline: none;
+}
+
+/* Search button styling */
+.search-button {
+  background: var(--primary);
+  color: white;
+  padding: 12px 24px;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 24px auto;
+}
+
+.search-button:hover {
+  background: var(--accent-blue);
+}
