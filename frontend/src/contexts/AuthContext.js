@@ -28,7 +28,7 @@ export const AuthProvider = ({ children }) => {
 
       // Always verify with backend
       try {
-        const response = await axios.get('http://localhost:8000/auth/me', {
+        const response = await axios.get(`${API_URL}/auth/me`, {
           headers: {
             'Authorization': `Bearer ${accessToken}`
           }
@@ -64,7 +64,7 @@ export const AuthProvider = ({ children }) => {
 
   const logout = async () => {
     try {
-      await axios.post('http://localhost:8000/auth/logout');
+      await axios.post(`${API_URL}/auth/logout`);
     } catch (error) {
       console.error('Logout error:', error);
     } finally {
