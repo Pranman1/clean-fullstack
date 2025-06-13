@@ -19,7 +19,6 @@ if not stripe_key:
 print(f"\n[SERVER] Initializing Stripe with key starting with: {stripe_key[:10]}...")
 try:
     stripe_lib.api_key = stripe_key.strip()
-    # Test the key by making a simple API call
     stripe_lib.Price.list(limit=1)
     print("[SERVER] Stripe key verified successfully!")
 except Exception as e:
@@ -28,33 +27,30 @@ except Exception as e:
 
 app = FastAPI(title="SkyWaze API")
 
-# Configure CORS
+# ✅ Update this with your real frontend URL from Vercel
+origins = [
+    "https://your-vercel-app-name.vercel.app",  # REPLACE THIS
+    "http://localhost:3000",                    # For local dev
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  # Frontend URL
+    allow_origins=origins,
     allow_credentials=True,
-    allow_methods=["*"],  # Allows all methods
-    allow_headers=["*"],  # Allows all headers
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
-# Middleware to log requests
 @app.middleware("http")
 async def log_requests(request: Request, call_next):
     start_time = time.time()
-    
-    # Log the request
     print(f"[SERVER] Request started: {request.method} {request.url.path}")
-    
-    # Process the request
     response = await call_next(request)
-    
-    # Calculate processing time
     process_time = time.time() - start_time
     print(f"[SERVER] Request completed: {request.method} {request.url.path} - Status: {response.status_code} - Took: {process_time:.2f}s")
-    
     return response
 
-# Include routers
+# Routers
 app.include_router(tasks.router)
 app.include_router(loads.router)
 app.include_router(calls.router)
@@ -72,7 +68,6 @@ async def root():
     print("[SERVER] Root endpoint accessed")
     return {"message": "Welcome to SkyWaze API"}
 
-# Test endpoint
 @app.get("/test")
 async def test_endpoint():
     return {"status": "ok", "message": "Backend is running"}
@@ -85,4 +80,4 @@ async def startup_event():
         print("[SERVER] MongoDB initialized successfully!")
     except Exception as e:
         print(f"[SERVER] Error initializing MongoDB: {str(e)}")
-        raise e 
+        raise e
