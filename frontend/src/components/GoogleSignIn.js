@@ -4,7 +4,7 @@ import './GoogleSignIn.css';
 const GoogleSignIn = () => {
   const handleGoogleLogin = async () => {
     try {
-      const response = await fetch('http://localhost:8000/auth/google/login', {
+      const response = await fetch(`${API_URL}/auth/google/login`, {
         method: 'GET',
         headers: {
           'Accept': 'application/json',
