@@ -20,9 +20,9 @@ load_dotenv()
 router = APIRouter(prefix="/auth", tags=["auth"])
 
 # Load OAuth config
-GOOGLE_CLIENT_ID = "255019846790-6s62ntot8fi4bt5ln7hi030p6k5noa75.apps.googleusercontent.com"
-GOOGLE_CLIENT_SECRET = "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"
-FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:3000")
+GOOGLE_CLIENT_ID = "1061608592523-kp122ea0sbv6kuq0k6or8735sh45kerl.apps.googleusercontent.com"
+GOOGLE_CLIENT_SECRET = "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"
+FRONTEND_URL = os.getenv("FRONTEND_URL", "https://production-zeta-eight.vercel.app")
 REDIRECT_URI = f"{FRONTEND_URL}/auth/callback"
 JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY", "your-secret-key")  # Change in production
 JWT_ALGORITHM = "HS256"

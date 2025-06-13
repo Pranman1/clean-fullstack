@@ -1,36 +1,42 @@
 from fastapi import FastAPI, Request, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 import time
-from app.routers import tasks, loads, calls, auth, stripe, chat, booked_loads, saved_loads, trip, voice_preferences, user
-from pydantic import BaseModel
-from twilio.rest import Client
 import os
 from dotenv import load_dotenv
 import stripe as stripe_lib
+from pydantic import BaseModel
+from twilio.rest import Client
+
+from app.routers import (
+    tasks, loads, calls, auth, stripe, chat,
+    booked_loads, saved_loads, trip, voice_preferences, user
+)
 from app.database import init_db
 
-# Load environment variables from .env file
+# Load environment variables
 load_dotenv()
 
-# Verify Stripe key on startup
+# Validate Stripe secret key
 stripe_key = os.getenv('STRIPE_SECRET_KEY')
 if not stripe_key:
     raise ValueError("Missing STRIPE_SECRET_KEY environment variable")
-print(f"\n[SERVER] Initializing Stripe with key starting with: {stripe_key[:10]}...")
+
+print(f"\n[SERVER] Initializing Stripe with key: {stripe_key[:10]}...")
 try:
     stripe_lib.api_key = stripe_key.strip()
-    stripe_lib.Price.list(limit=1)
+    stripe_lib.Price.list(limit=1)  # validate key
     print("[SERVER] Stripe key verified successfully!")
 except Exception as e:
     print(f"[SERVER] Error verifying Stripe key: {str(e)}")
     raise ValueError(f"Invalid Stripe key: {str(e)}")
 
+# Instantiate FastAPI app
 app = FastAPI(title="SkyWaze API")
 
-# ✅ Update this with your real frontend URL from Vercel
+# ✅ CORS setup — MUST be correct for frontend/backend to talk
 origins = [
-    "https://your-vercel-app-name.vercel.app",  # REPLACE THIS
-    "http://localhost:3000",                    # For local dev
+    "https://production-zeta-eight.vercel.app",  # your Vercel frontend
+    "http://localhost:3000",                     # local dev frontend
 ]
 
 app.add_middleware(
@@ -41,16 +47,17 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Logging requests
 @app.middleware("http")
 async def log_requests(request: Request, call_next):
     start_time = time.time()
-    print(f"[SERVER] Request started: {request.method} {request.url.path}")
+    print(f"[SERVER] Request: {request.method} {request.url.path}")
     response = await call_next(request)
-    process_time = time.time() - start_time
-    print(f"[SERVER] Request completed: {request.method} {request.url.path} - Status: {response.status_code} - Took: {process_time:.2f}s")
+    duration = time.time() - start_time
+    print(f"[SERVER] Done: {request.method} {request.url.path} - {response.status_code} in {duration:.2f}s")
     return response
 
-# Routers
+# Mount routers
 app.include_router(tasks.router)
 app.include_router(loads.router)
 app.include_router(calls.router)
@@ -63,21 +70,23 @@ app.include_router(trip.router)
 app.include_router(voice_preferences.router)
 app.include_router(user.router)
 
+# Root route
 @app.get("/")
 async def root():
-    print("[SERVER] Root endpoint accessed")
     return {"message": "Welcome to SkyWaze API"}
 
+# Health check endpoint
 @app.get("/test")
-async def test_endpoint():
+async def test():
     return {"status": "ok", "message": "Backend is running"}
 
+# MongoDB init
 @app.on_event("startup")
 async def startup_event():
-    print("[SERVER] Initializing MongoDB connection and indexes...")
+    print("[SERVER] Initializing MongoDB...")
     try:
         await init_db()
-        print("[SERVER] MongoDB initialized successfully!")
+        print("[SERVER] MongoDB connection successful.")
     except Exception as e:
-        print(f"[SERVER] Error initializing MongoDB: {str(e)}")
+        print(f"[SERVER] MongoDB init error: {str(e)}")
         raise e
